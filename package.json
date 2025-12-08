@@ -4,14 +4,14 @@
   "description": "Wallywood API",
   "main": "index.js",
   "scripts": {
-  "dev": "tsx watch src/index.ts",
-  "build": "tsc",
-  "start": "node dist/index.js",
-  "prisma:generate": "prisma generate",
-  "prisma:migrate": "prisma migrate dev",
-  "prisma:reset": "prisma migrate reset"
-},
-    "repository": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:reset": "prisma migrate reset"
+  },
+  "repository": {
     "type": "git",
     "url": "git+https://github.com/KariM361/Wallywood-API.git"
   },
@@ -25,10 +25,12 @@
   "homepage": "https://github.com/KariM361/Wallywood-API#readme",
   "dependencies": {
     "@prisma/client": "6.19",
+    "bcrypt": "^6.0.0",
     "dotenv": "^17.2.3",
     "express": "^5.2.1"
   },
   "devDependencies": {
+    "@types/bcrypt": "^6.0.0",
     "@types/express": "^5.0.6",
     "@types/node": "^24.10.1",
     "prisma": "6.19",
