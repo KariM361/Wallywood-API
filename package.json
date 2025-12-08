@@ -1,0 +1,33 @@
+{
+  "name": "wallywood-api",
+  "version": "1.0.0",
+  "description": "Wallywood API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KariM361/Wallywood-API.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/KariM361/Wallywood-API/issues"
+  },
+  "homepage": "https://github.com/KariM361/Wallywood-API#readme",
+  "dependencies": {
+    "@prisma/client": "6.19",
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^24.10.1",
+    "prisma": "6.19",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  }
+}
