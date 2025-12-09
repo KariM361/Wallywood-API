@@ -16,7 +16,7 @@ enum Role {
   ADMIN
   USER
 }
-model Users{
+model User{
   id Int @id @default(autoincrement())
   firstname String
   lastname String
@@ -26,18 +26,23 @@ model Users{
   isActive Boolean
   createdAt DateTime @default(now())
  
-  @@map("users")
+ cartlines Cartline[]
+ userRating userRating[]
+  @@map("user")
 }
-model cartlines{
+model Cartline{
   id Int @id @default(autoincrement())
   userId Int
-  postertId Int
+  posterId Int
   quantity Int
   createdAt DateTime
 
+user User @relation(fields: [userId], references: [id])
+poster Poster @relation(fields: [posterId], references: [id])
+
   @@map("cartlines")
 }
-model posters{
+model Poster{
   id Int @id @default(autoincrement())
   name String
   slug String @unique
@@ -50,30 +55,42 @@ model posters{
   createdAt DateTime
   updatedAt DateTime
 
-  @@map("posters")
+ cartlines Cartline[]
+ userRating userRating[]
+ genrePosterRel GenrePosterRel[]
+
+ @@map("posters")
 }
-model userRatings{
+model userRating{
   id Int @id @default(autoincrement())
   userId Int
   posterId Int
   numStars Int
   createdAt DateTime
 
+   user User @relation(fields: [userId], references: [id])
+   poster Poster @relation(fields: [posterId], references: [id])
+
   @@map("userRatings")
 }
-model genres{
+model Genre{
   id Int @id @default(autoincrement())
   title String
   slug String @unique
   createdAt DateTime
   updatedAt DateTime
 
+  genrePosterRel GenrePosterRel[]
+
   @@map("genres")
 }
-model genrePosterRel{
+model GenrePosterRel{
   id Int @id @default(autoincrement())
   genreId Int 
-  posterId Int 
+  posterId Int
+
+genre Genre @relation(fields: [genreId], references: [id])
+poster Poster @relation(fields: [posterId], references: [id])
 
 @@map("genrePosterRel")
 }

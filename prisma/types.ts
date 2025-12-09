@@ -19,7 +19,7 @@ export const fieldTypes: Record<string, Record<string, 'string'|'number'|'boolea
        createdAt: 'date',
         },
 
-    Posters: {
+    Poster: {
         id: 'number',
         name: 'string',
         slug: 'string',

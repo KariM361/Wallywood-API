@@ -11,7 +11,7 @@ import bcrypt from 'bcrypt';
  */
 export const getRecords = async (req: Request, res: Response) => {
   try {
-    const data = await prisma.users.findMany();
+    const data = await prisma.user.findMany();
     res.status(200).json(data);
   } catch (error) {
     console.error(error);
@@ -30,7 +30,7 @@ export const getRecord = async (req: Request, res: Response) => {
     return res.status(400).json({ error: 'id is missing' });
   }
   try {
-    const data = await prisma.users.findUnique({
+    const data = await prisma.user.findUnique({
       where: { id },
     });
     return res.status(200).json(data);
@@ -57,7 +57,7 @@ export const createRecord = async (req: Request, res: Response) => {
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const data = await prisma.users.create({
+    const data = await prisma.user.create({
       data: {
         firstname,
         lastname,
@@ -91,7 +91,7 @@ export const updateRecord = async (req: Request, res: Response) => {
    return res.status(400).json({ error: 'All data is required' })
 }
   try {
-    const data = await prisma.users.update({
+    const data = await prisma.user.update({
       where: { id },
       data: { firstname, lastname, email, password, role, isActive },
     });
@@ -108,7 +108,7 @@ export const deleteRecord = async (req: Request, res: Response) => {
     return res.status(400).json({ error: 'id is missing' });
   }
   try {
-    const data = await prisma.users.delete({
+    const data = await prisma.user.delete({
       where: { id },
     });
     return res.status(200).json({message: 'record deleted', deletedId: id});
