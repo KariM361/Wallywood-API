@@ -38,7 +38,8 @@ export const getRecord = async (req: Request, res: Response) => {
     console.error(error);
     return res.status(500).json({ error: 'Failed to fetch user' });
   }
-};/**
+};
+/**
  * Method Create Record
  * @param req 
  * @param res 
@@ -52,6 +53,7 @@ export const createRecord = async (req: Request, res: Response) => {
   if (!firstname || !lastname || !email || !password || !role || !isActive) {
     return res.status(400).json({ error: 'All data is required' })
   }
+
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -62,7 +64,7 @@ export const createRecord = async (req: Request, res: Response) => {
         email,
         password: hashedPassword,
         role,
-        isActive: Boolean(isActive),
+        isActive: Boolean(isActive)
       }
     })
     return res.status(201).json(data)
@@ -85,8 +87,34 @@ export const updateRecord = async (req: Request, res: Response) => {
   }
  const { firstname, lastname, email, password, role, isActive } = req.body;
 
- if{ !firstname || !lastname || !email || !password || !role || !isActive } {
-  return res.status(400).json({ error: 'All data is required' })
+ if(!firstname || !lastname || !email || !password || !role || !isActive ) {
+   return res.status(400).json({ error: 'All data is required' })
+}
+  try {
+    const data = await prisma.users.update({
+      where: { id },
+      data: { firstname, lastname, email, password, role, isActive },
+    });
+    return res.status(200).json(data);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: 'something is wrong' });
+
+  }
+};
+export const deleteRecord = async (req: Request, res: Response) => {
+  const id = Number(req.params.id);
+  if (!id) {
+    return res.status(400).json({ error: 'id is missing' });
   }
   try {
-    const data =
+    const data = await prisma.users.delete({
+      where: { id },
+    });
+    return res.status(200).json({message: 'record deleted', deletedId: id});
+     ;
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: 'Failed to delete record' });
+  }
+};

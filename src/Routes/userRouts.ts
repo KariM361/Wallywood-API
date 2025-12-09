@@ -1,11 +1,12 @@
 import { Router } from 'express';
-import { getRecords } from '../Controllers/userController.js';
+import { createRecord, deleteRecord, getRecord, getRecords, updateRecord } from '../Controllers/userController.js';
 
 const router = Router();
-routes.get('/', getRecords);
-routes.get('/:id', getRecord);
-routes.post('/', createRecord);
-routes.put('/:id', updateRecord);
-routes.delete('/:id', deleteRecord);
+router.get('/', getRecords);
+router.get('/:id', getRecord);
+router.post('/', createRecord);
+router.put('/:id', updateRecord);
+router.delete('/:id', deleteRecord);
 
 export const userRoutes = router;
+
