@@ -92,13 +92,14 @@ export const updateRecord = async (req: Request, res: Response) => {
         return res.status(400).json({ error: 'All data is required' })
     }
 try{
-        const data = await prisma.poster.create({
+        const data = await prisma.poster.update({
+            where:{ id },
             data: {
             name,
             slug,
             description,
             image,
-            width:Number(width),
+            width: Number(width),
             height: Number(height),
             price: Number(price),
             stock: Number(stock),

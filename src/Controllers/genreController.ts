@@ -11,11 +11,11 @@ import { error } from "console";
 
 export const getRecords = async (req: Request, res: Response) => {
     try {
-        const data = await prisma.genrePosterRel.findMany({})
+        const data = await prisma.genre.findMany({})
         return res.status(200).json(data)
     }catch (error) {
         console.error(error)
-        res.status(500).json({ error: 'Failed to fetch genrePosterRel'})
+        res.status(500).json({ error: 'Failed to fetch genres'})
     }
 }
 /**
@@ -31,13 +31,13 @@ export const getRecord = async (req: Request, res: Response) => {
         return res.status(400).json({error:'id is missing' })
     }
     try {
-    const data = await prisma.genrePosterRel.findUnique({
+    const data = await prisma.genre.findUnique({
       where: { id },
     });
     return res.status(200).json(data)
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Failed to fetch genrePosterRel' });
+    res.status(500).json({ error: 'Failed to fetch genre' });
   }
 }
 /**
@@ -49,16 +49,16 @@ export const getRecord = async (req: Request, res: Response) => {
 export const createRecord = async (req: Request, res: Response) => {
     console.log(req.body)
 
-    const{genreId, posterId} = req.body;
+    const{title, slug} = req.body;
 
-    if(!genreId||!posterId){
+    if(!title||!slug){
         return res.status(400).json({ error: 'All data is required'})
     }
     try{
-        const data = await prisma.genrePosterRel.create({
+        const data = await prisma.genre.create({
             data: {
-              genreId,
-              posterId  
+              title,
+              slug  
             }
         })
         return res.status(201).json(data)
@@ -79,18 +79,18 @@ const id = Number(req.params.id)
 if(!id){
     return res.status(400).json({error: 'Id is missing'})
 }
-const { genreId, posterId } = req.body;
+const { title, slug } = req.body;
   
-  if(!genreId||!posterId) {
+  if(!title||!slug) {
     return res.status(400).json({ error: 'All data is required' })
   }
   
   try {
-    const data = await prisma.genrePosterRel.update({
+    const data = await prisma.genre.update({
       where: { id },
      data: {
-        genreId,
-        posterId
+        title,
+        slug
       }
     })
     return res.status(201).json(data)
@@ -108,7 +108,7 @@ export const deleteRecord = async (req: Request, res: Response) => {
   }
   
   try {
-    const data = await prisma.genrePosterRel.delete({
+    const data = await prisma.genre.delete({
       where: { id }
     })
     res.status(200).json({ message: 'Record deleted',

@@ -8,4 +8,4 @@ router.post('/', createRecord);
 router.put('/:id', updateRecord);
 router.delete('/:id', deleteRecord);
 
-export const userRoutes = router;
+export const genrePosterRelRoutes = router;

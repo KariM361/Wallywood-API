@@ -35,7 +35,7 @@ model Cartline{
   userId Int
   posterId Int
   quantity Int
-  createdAt DateTime
+  createdAt DateTime @default(now())
 
 user User @relation(fields: [userId], references: [id])
 poster Poster @relation(fields: [posterId], references: [id])
@@ -52,8 +52,8 @@ model Poster{
   height Int
   price Decimal
   stock Int
-  createdAt DateTime
-  updatedAt DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
  cartlines Cartline[]
  userRating userRating[]
@@ -66,7 +66,7 @@ model userRating{
   userId Int
   posterId Int
   numStars Int
-  createdAt DateTime
+  createdAt DateTime @default(now())
 
    user User @relation(fields: [userId], references: [id])
    poster Poster @relation(fields: [posterId], references: [id])
@@ -77,8 +77,8 @@ model Genre{
   id Int @id @default(autoincrement())
   title String
   slug String @unique
-  createdAt DateTime
-  updatedAt DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   genrePosterRel GenrePosterRel[]
 

@@ -1,6 +1,10 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import { userRoutes } from './Routes/userRouts.js';
+import { userRoutes } from './Routes/userRoutes.js';
+import { PosterRoutes } from './Routes/posterRoutes.js';
+import { genreRoutes } from './Routes/genreRoutes.js';
+import { cartlineRoutes } from './Routes/cartlineRoutes.js';
+import { genrePosterRelRoutes } from './Routes/genrePosterRelRoutes.js';
 
 // Indlæs miljøvariabler fra .env (uden at vise logs)
 dotenv.config({ quiet: true });
@@ -19,6 +23,15 @@ app.use(express.urlencoded({ extended: true }));
 
 // Brug vores user-routes under /api/users
 app.use('/api/users', userRoutes);
+app.use('/api/poster', PosterRoutes);
+app.use('/api/cartline', cartlineRoutes);
+app.use('/api/genre', genreRoutes);
+app.use('/api/genrePostRel', genrePosterRelRoutes);
+
+//404 route
+app.use((req,res)=> {
+  res.status(404).send('kunne ikke finde siden du søgte efter')
+})
 
 // Start serveren
 app.listen(port, () => {
