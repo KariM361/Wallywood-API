@@ -4,7 +4,7 @@ import { userRoutes } from './Routes/userRoutes.js';
 import { PosterRoutes } from './Routes/posterRoutes.js';
 import { genreRoutes } from './Routes/genreRoutes.js';
 import { cartlineRoutes } from './Routes/cartlineRoutes.js';
-import { genrePosterRelRoutes } from './Routes/genrePosterRelRoutes.js';
+import { authRoutes } from './Routes/authRoutes.js';
 
 // Indlæs miljøvariabler fra .env (uden at vise logs)
 dotenv.config({ quiet: true });
@@ -26,7 +26,7 @@ app.use('/api/users', userRoutes);
 app.use('/api/poster', PosterRoutes);
 app.use('/api/cartline', cartlineRoutes);
 app.use('/api/genre', genreRoutes);
-app.use('/api/genrePostRel', genrePosterRelRoutes);
+app.use('/api/auth', authRoutes)
 
 //404 route
 app.use((req,res)=> {
