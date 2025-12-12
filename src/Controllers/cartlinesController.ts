@@ -99,7 +99,7 @@ try {
     return res.status(500).json({error: 'something is wrong'})
 }
 }
-export const deletedRecord = async (req: Request, res: Response)=> {
+export const deleteRecord = async (req: Request, res: Response)=> {
     const id = Number (req.params.id)
     if(!id) {
         return res.status(400).json({error :'Id is missing'})

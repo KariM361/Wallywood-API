@@ -1,7 +1,7 @@
 import { create } from "domain";
 
 export const fieldTypes: Record<string, Record<string, 'string'|'number'|'boolean'|'date'>> = {
-    Users: {
+    user: {
         id: 'number',
         firstname: 'string',
         lastname: 'string',
@@ -10,16 +10,14 @@ export const fieldTypes: Record<string, Record<string, 'string'|'number'|'boolea
         role: 'string',
         isActive: 'boolean'
     },
-    
-    Cartlines: {
+    cartline: {
         id: 'number',
         userId: 'number',
         posterId: 'number',
         quantity: 'number',
        createdAt: 'date',
-        },
-
-    Poster: {
+    },
+    poster: {
         id: 'number',
         name: 'string',
         slug: 'string',
@@ -32,27 +30,22 @@ export const fieldTypes: Record<string, Record<string, 'string'|'number'|'boolea
         createdAt: 'date',
         updatedAt: 'date'
     },
-
-    UserRatings: {
+    userrating: {
         id: 'number',
         userId: 'number',
         posterId: 'number',
         numStars: 'number',
         createdAt: 'date',
     },
-
-    Genres: {
+    genre: {
         id: 'number',
         title:'string',
         slug: 'string',
         createdAt: 'date',
-        updateAt: 'date',
+        updatedAt: 'date',
     },
-    
-    GenrePosterRel: {
-        id: 'number',
+    genrePosterRel: {
         genreId: 'number',
         posterId: 'number',
     }
-        
 }

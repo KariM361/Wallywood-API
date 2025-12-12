@@ -93,7 +93,7 @@ export const updateRecord = async (req: Request, res: Response) => {
   try {
     const data = await prisma.user.update({
       where: { id },
-      data: { firstname, lastname, email, password, role, isActive },
+      data: { firstname, lastname, email, password, role, isActive: Boolean(isActive) },
     });
     return res.status(200).json(data);
   } catch (error) {
